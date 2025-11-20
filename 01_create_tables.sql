@@ -102,9 +102,9 @@ ORDER BY p.payroll_year, i.name;
 
 ------------------------------------------------------------------------------------------------
 
--- DROP TABLE IF EXISTS t_jmeno_prijmeni_project_SQL_primary_final;
+-- DROP TABLE IF EXISTS t_pavol_medo_project_SQL_primary_final;
 
-CREATE TABLE t_jmeno_prijmeni_project_SQL_primary_final AS
+CREATE TABLE t_pavol_medo_project_SQL_primary_final AS
 
 -- Část 1: mzdy podle odvětví
 SELECT
@@ -136,9 +136,9 @@ JOIN wage_clean_final w
 
 -------------------------------------------------------------------------------------------------
 
--- DROP TABLE IF EXISTS t_jmeno_prijmeni_project_SQL_secondary_final;
+-- DROP TABLE IF EXISTS t_pavol_medo_project_SQL_secondary_final;
 
-CREATE TABLE t_jmeno_prijmeni_project_SQL_secondary_final AS
+CREATE TABLE t_pavol_medo_project_SQL_secondary_final AS
 SELECT
     c.country AS country_name,
     e.year,
@@ -147,7 +147,8 @@ SELECT
 FROM countries c
 JOIN economies e
     ON c.country = e.country
-WHERE e.year IN (SELECT DISTINCT year FROM t_jmeno_prijmeni_project_SQL_primary_final)
+WHERE e.year IN (SELECT DISTINCT year FROM t_pavol_medo_project_SQL_primary_final)
 ORDER BY c.country, e.year;
+
 
 --------------------------------------------------------------------------------------------------
