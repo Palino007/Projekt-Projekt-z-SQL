@@ -134,7 +134,7 @@ Výraznější roční růst HDP se nepromítá jednoznačně do výraznějšíh
 
 Všechny finální dotazy pro výzkumné otázky jsou uloženy v souboru:  
 
-➡ `research_queries.sql`
+➡ `02_research_queries.sql`
 
 ---
 
@@ -155,3 +155,4 @@ Tento projekt tak demonstruje použití SQL při analýze reálných ekonomický
 
 *Pavol Medo* 
 2025
+
