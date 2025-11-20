@@ -154,5 +154,4 @@ Tento projekt tak demonstruje použití SQL při analýze reálných ekonomický
 # 👤 Autor
 
 *Pavol Medo* 
-Engeto; Data Academy
 2025
