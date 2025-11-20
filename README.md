@@ -13,8 +13,8 @@ Na vašem analytickém oddělení nezávislé společnosti, která se zabývá �
 
 Projekt využívá dvě vlastní čisté tabulky:
 
-- **Primary:** `t_Pavol_Medo_project_SQL_primary_final`
-- **Secondary:** `t_Pavol_Medo_project_SQL_secondary_final`
+- **Primary:** `t_pavol_medo_project_SQL_primary_final`
+- **Secondary:** `t_pavol_medo_project_SQL_secondary_final`
 
 Obě tabulky byly vytvořeny transformací a očištěním dat dostupných v systému PostgreSQL.
 
@@ -155,4 +155,5 @@ Tento projekt tak demonstruje použití SQL při analýze reálných ekonomický
 
 *Pavol Medo* 
 2025
+
 
