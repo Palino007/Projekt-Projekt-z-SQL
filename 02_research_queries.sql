@@ -10,7 +10,7 @@ WITH wage_changes AS (
         year,
         avg_wage,
         avg_wage - LAG(avg_wage) OVER (PARTITION BY industry_name ORDER BY year) AS wage_change
-    FROM t_jmeno_prijmeni_project_SQL_primary_final
+    FROM t_pavol_medo_project_SQL_primary_final
     WHERE industry_name IS NOT NULL
 )
 SELECT
@@ -43,7 +43,7 @@ ORDER BY overall_trend DESC, avg_yearly_change DESC;
 
 WITH wages_per_year AS (
     SELECT year, ROUND(AVG(avg_wage), 2) AS avg_wage
-    FROM t_jmeno_prijmeni_project_SQL_primary_final
+    FROM t_pavol_medo_project_SQL_primary_final
     WHERE industry_name IS NOT NULL
     GROUP BY year
 ),
@@ -54,7 +54,7 @@ relevant_data AS (
         p.avg_price,
         w.avg_wage,
         ROUND(w.avg_wage / p.avg_price, 2) AS units
-    FROM t_jmeno_prijmeni_project_SQL_primary_final p
+    FROM t_pavol_medo_project_SQL_primary_final p
     JOIN wages_per_year w
         ON p.year = w.year
     WHERE p.category_name IN ('Chléb konzumní kmínový', 'Mléko polotučné pasterované')
@@ -90,7 +90,7 @@ WITH price_changes AS (
         year,
         avg_price,
         LAG(avg_price) OVER (PARTITION BY category_name ORDER BY year) AS prev_price
-    FROM t_jmeno_prijmeni_project_SQL_primary_final
+    FROM t_pavol_medo_project_SQL_primary_final
     WHERE category_name IS NOT NULL
 )
 SELECT
@@ -117,7 +117,7 @@ WITH food_prices AS (
     SELECT
         year,
         AVG(avg_price) AS avg_price_food
-    FROM t_jmeno_prijmeni_project_SQL_primary_final
+    FROM t_pavol_medo_project_SQL_primary_final
     WHERE category_name IS NOT NULL
     GROUP BY year
 ),
@@ -125,7 +125,7 @@ wages AS (
     SELECT
         year,
         AVG(avg_wage) AS avg_wage
-    FROM t_jmeno_prijmeni_project_SQL_primary_final
+    FROM t_pavol_medo_project_SQL_primary_final
     WHERE industry_name IS NOT NULL
     GROUP BY year
 ),
@@ -177,8 +177,8 @@ WITH cr_data AS (
         ROUND(s.gdp_million, 2) AS gdp_million,
         ROUND(AVG(p.avg_wage), 2) AS avg_wage,
         ROUND(AVG(p.avg_price), 2) AS avg_price
-    FROM t_jmeno_prijmeni_project_SQL_secondary_final s
-    JOIN t_jmeno_prijmeni_project_SQL_primary_final p
+    FROM t_pavol_medo_project_SQL_secondary_final s
+    JOIN t_pavol_medo_project_SQL_primary_final p
         ON s.year = p.year
     WHERE s.country_name = 'Czech Republic'
     GROUP BY s.year, s.gdp_million
@@ -238,5 +238,6 @@ ORDER BY year;
 -- Shrnutí: Výraznější roční růst HDP se nepromítá jednoznačně do výraznějšího růstu mezd ani cen potravin
 -- v daném nebo následujícím roce. Data tedy nenaznačují silnou bezprostřední závislost mezi HDP a těmito ukazateli.
 -- *HDP pro rok 2021 v secondary tabulce chybí, resp. tato data nejsou ve zdrojové tabulce economies
+
 
 -----------------------------------------------------------------------------------------------------------------------
